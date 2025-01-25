@@ -1,0 +1,60 @@
+.check_event-container {
+  width: 100%;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.check_event-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.check_event-table th,
+.check_event-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.check_event-table th {
+  background-color: #007BFF;
+  color: white;
+}
+
+.check_event-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.check_event-table tr:hover {
+  background-color: #e0e0e0;
+}
+
+.check_event-edit-btn,
+.check_event-delete-btn {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.check_event-edit-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.check_event-edit-btn:hover {
+  background-color: #218838;
+}
+
+.check_event-delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.check_event-delete-btn:hover {
+  background-color: #c82333;
+}

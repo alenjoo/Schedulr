@@ -22,7 +22,6 @@ const loginUser = async (req, res) => {
                     { expiresIn: '1h' } 
                 );
 
-                // Send the token in response
                 return res.status(200).json({ 
                     success: true, 
                     message: 'User found and login successful', 

@@ -5,6 +5,9 @@ import Signup from './components/Signup/signup';
 import Home from './components/Home/home';
 import Organizer from './components/Organizer/organizer';
 import AddEvent from './components/Organizer/add_event';
+import CheckEvents from './components/Organizer/check_event';
+import EditEvent from './components/Organizer/edit-event';
+import Attendee from './components/Attendee/attendee';
 
 function App() {
   return (
@@ -17,6 +20,10 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/organizer" element={<Organizer />} />
         <Route path="/add-event" element={<AddEvent />} />
+        <Route path ="/check-event-status" element={<CheckEvents />} />
+        <Route path="/edit-event/:event_id" element={<EditEvent />} />
+        <Route path="/attendee" element={<Attendee />} />
+
       </Routes>
     </Router>
   );
