@@ -4,6 +4,7 @@ import Login from './components/Login/login';
 import Signup from './components/Signup/signup';
 import Home from './components/Home/home';
 import Organizer from './components/Organizer/organizer';
+import AddEvent from './components/Organizer/add_event';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/organizer" element={<Organizer />} />
-
+        <Route path="/add-event" element={<AddEvent />} />
       </Routes>
     </Router>
   );

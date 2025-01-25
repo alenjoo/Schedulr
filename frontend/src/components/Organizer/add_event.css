@@ -1,0 +1,68 @@
+.add-event-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-event-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .add-event-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-event-form-group {
+    margin-bottom: 15px;
+  }
+  
+  .add-event-form-row {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .add-event-form-row .add-event-form-group {
+    flex: 1;
+  }
+  
+  .add-event-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 600;
+  }
+  
+  .add-event-input, 
+  .add-event-textarea, 
+  .add-event-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .add-event-textarea {
+    resize: vertical;
+  }
+  
+  .add-event-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-event-button:hover {
+    background-color: #45a049;
+  }
