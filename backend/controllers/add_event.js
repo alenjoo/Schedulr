@@ -8,7 +8,7 @@ const addEvent = (req, res) => {
     date, 
     time, 
     category, 
-    price,organizer_id 
+    price,organizer_id, ticketsAvailable
   } = req.body;
   
 console.log( title, 
@@ -22,8 +22,8 @@ console.log( title,
 
   const query = `
     INSERT INTO Events 
-    (title, description, location, date, time, category, price, organizer_id) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    (title, description, location, date, time, category, price, organizer_id, ticketsavailable) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   return new Promise((resolve, reject) => {
@@ -35,7 +35,7 @@ console.log( title,
       time, 
       category, 
       price || 0, 
-      organizer_id
+      organizer_id, ticketsAvailable
     ], (error, results) => {
       if (error) {
         res.status(500).json({ 

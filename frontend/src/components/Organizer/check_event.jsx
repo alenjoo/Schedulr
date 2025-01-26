@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";  // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom";  
 
 const EventsPage = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const navigate = useNavigate();  // Use navigate hook for routing
+  const navigate = useNavigate();  
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -19,11 +19,9 @@ const EventsPage = () => {
           return;
         }
 
-        // Decode the token to get the user ID
         const decoded = jwtDecode(token);
-        const userId = decoded.id; // Assuming the token contains 'id' as the user ID
+        const userId = decoded.id; 
 
-        // Pass the user ID to the backend
         const response = await axios.get(`http://localhost:5001/get-events/${userId}`);
         console.log(response.data);
         setEvents(response.data);
@@ -40,8 +38,8 @@ const EventsPage = () => {
   const handleDelete = async (event_id) => {
     try {
       const response = await axios.delete(`http://localhost:5001/delete/${event_id}`);
-      console.log(response.data.message); // Log the success message
-      setEvents(events.filter(event => event.event_id !== event_id)); // Update the state to remove the deleted event
+      console.log(response.data.message); 
+      setEvents(events.filter(event => event.event_id !== event_id)); 
     } catch (err) {
       console.error("Error deleting event", err);
       setError("Failed to delete event");
@@ -49,7 +47,6 @@ const EventsPage = () => {
   };
 
   const handleEdit = (event_id) => {
-    // Navigate to the edit page with the event ID
     navigate(`/edit-event/${event_id}`);
   };
 
@@ -69,7 +66,9 @@ const EventsPage = () => {
             <th>Time</th>
             <th>Category</th>
             <th>Price</th>
+            <th>Tickets Available</th>
             <th>Actions</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -83,6 +82,7 @@ const EventsPage = () => {
                 <td>{event.time}</td>
                 <td>{event.category}</td>
                 <td>{event.price}</td>
+                <td>{event.ticketsavailable}</td>
                 <td>
                   <button onClick={() => handleEdit(event.event_id)}>Edit</button>
                   <button onClick={() => handleDelete(event.event_id)}>Delete</button>

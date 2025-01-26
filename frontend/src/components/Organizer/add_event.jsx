@@ -11,7 +11,8 @@ const AddEvent = () => {
     date: '',
     time: '',
     category: '',
-    price: ''
+    price: '',
+    ticketsAvailable: '' 
   });
 
   const handleChange = (e) => {
@@ -22,18 +23,17 @@ const AddEvent = () => {
     }));
   };
 
-  // Function to validate and convert the date input into dd/mm/yyyy format
   const validateAndFormatDate = (dateStr) => {
-    const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/; // dd/mm/yyyy format
+    const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
     const match = dateStr.match(regex);
     if (match) {
       const [day, month, year] = match.slice(1);
       const date = new Date(`${year}-${month}-${day}`);
       if (!isNaN(date.getTime())) {
-        return `${year}-${month}-${day}`; // Returns date in yyyy-mm-dd format for backend
+        return `${year}-${month}-${day}`;
       }
     }
-    return null; // Return null if the date is invalid
+    return null;
   };
 
   const handleSubmit = async (e) => {
@@ -41,7 +41,6 @@ const AddEvent = () => {
     
     try {
       const token = localStorage.getItem('token');
-      
       const decodedToken = jwtDecode(token);
       const organizerId = decodedToken.id;
 
@@ -52,7 +51,7 @@ const AddEvent = () => {
 
       const formattedDate = validateAndFormatDate(eventDetails.date);
       if (formattedDate) {
-        eventData.date = formattedDate; // Set the correctly formatted date for the backend
+        eventData.date = formattedDate;
       } else {
         alert("Invalid date format. Please use dd/mm/yyyy.");
         return;
@@ -67,7 +66,6 @@ const AddEvent = () => {
       });
 
       console.log('Event created:', response.data);
-      
       setEventDetails({
         title: '',
         description: '',
@@ -75,7 +73,8 @@ const AddEvent = () => {
         date: '',
         time: '',
         category: '',
-        price: ''
+        price: '',
+        ticketsAvailable: '' 
       });
 
     } catch (error) {
@@ -181,6 +180,20 @@ const AddEvent = () => {
             className="add-event-input"
             min="0"
             step="0.01"
+          />
+        </div>
+
+        <div className="add-event-form-group">
+          <label htmlFor="ticketsAvailable" className="add-event-label">Total Tickets Available</label>
+          <input
+            type="number"
+            id="ticketsAvailable"
+            name="ticketsAvailable"
+            value={eventDetails.ticketsAvailable}
+            onChange={handleChange}
+            className="add-event-input"
+            min="1"
+            required
           />
         </div>
 

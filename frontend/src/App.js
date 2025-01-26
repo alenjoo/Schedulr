@@ -8,6 +8,7 @@ import AddEvent from './components/Organizer/add_event';
 import CheckEvents from './components/Organizer/check_event';
 import EditEvent from './components/Organizer/edit-event';
 import Attendee from './components/Attendee/attendee';
+import BookTicket from './components/Attendee/book_ticket';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
         <Route path ="/check-event-status" element={<CheckEvents />} />
         <Route path="/edit-event/:event_id" element={<EditEvent />} />
         <Route path="/attendee" element={<Attendee />} />
+        <Route path="/book_ticket/:eventId" element={<BookTicket />} />
+
 
       </Routes>
     </Router>

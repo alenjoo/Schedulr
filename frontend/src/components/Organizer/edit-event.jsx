@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditEvent = () => {
-  const { event_id } = useParams();  // Get the event_id from the URL
+  const { event_id } = useParams();  
   const navigate = useNavigate();
 
   const [event, setEvent] = useState({
@@ -25,8 +25,7 @@ const EditEvent = () => {
         const response = await axios.get(`http://localhost:5001/get-event/${event_id}`);
         const eventData = response.data;
 
-        // Format the date to match input type="date"
-        const formattedDate = new Date(eventData.date).toISOString().split("T")[0]; // Get the date portion only
+        const formattedDate = new Date(eventData.date).toISOString().split("T")[0]; 
         setEvent({
           ...eventData,
           date: formattedDate,
@@ -44,7 +43,6 @@ const EditEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (!event.title || !event.date || !event.time) {
       setError("Title, Date, and Time are required fields.");
       return;
@@ -144,7 +142,6 @@ const EditEvent = () => {
         <button type="submit">Save Changes</button>
       </form>
 
-      {/* Display formatted date using toLocaleDateString */}
       <h2>Event Details</h2>
       <table>
         <tbody>
@@ -158,7 +155,7 @@ const EditEvent = () => {
             <td><strong>Location:</strong> {event.location}</td>
           </tr>
           <tr>
-            <td><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</td> {/* Format the date */}
+            <td><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</td>
           </tr>
           <tr>
             <td><strong>Time:</strong> {event.time}</td>

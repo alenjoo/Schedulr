@@ -18,14 +18,11 @@ function Login() {
       console.log(response);
 
       if (response.data.success) {
-        // Store the token in localStorage
         localStorage.setItem('token', response.data.token);
 
-        // Decode the token to get user information
         const decodedToken = jwtDecode(response.data.token);
         const role = decodedToken.role;
 
-        // Navigate based on the role
         if (role === 'Admin') {
           navigate('/home');
         } else if (role === 'Organizer') {
@@ -33,7 +30,7 @@ function Login() {
         } else if (role === 'Attendee') {
           navigate('/attendee');
         } else {
-          navigate('/home'); // Default page (if no role matches)
+          navigate('/home'); 
         }
       } else {
         setError('Invalid credentials. Please try again.');
