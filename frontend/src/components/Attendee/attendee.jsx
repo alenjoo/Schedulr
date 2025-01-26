@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { FaHeart } from "react-icons/fa"; 
 
 const Attendee = () => {
   const [filters, setFilters] = useState({
@@ -10,7 +11,8 @@ const Attendee = () => {
     category: "",
   });
   const [events, setEvents] = useState([]);
-  const [myEvents, setMyEvents] = useState([]); // State for user's booked events
+  const [myEvents, setMyEvents] = useState([]);
+  const [favorites, setFavorites] = useState([]); 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -93,10 +95,10 @@ const Attendee = () => {
       navigate("/login");
       return;
     }
-  
+
     const decodedToken = jwtDecode(token);
     const userId = decodedToken.id;
-  
+
     setLoading(true);
     setError("");
     try {
@@ -107,7 +109,6 @@ const Attendee = () => {
       const { success, message } = response.data;
       if (success) {
         alert(message || "Booking canceled successfully!");
-        // Remove the canceled event from the myEvents state immediately
         setMyEvents((prevEvents) =>
           prevEvents.filter((event) => event.event_id !== eventId)
         );
@@ -120,11 +121,57 @@ const Attendee = () => {
       setLoading(false);
     }
   };
-  
+
+  const handleAddToFavorites = async (eventId) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("User is not authenticated. Please log in.");
+      navigate("/login");
+      return;
+    }
+
+    const decodedToken = jwtDecode(token);
+    const userId = decodedToken.id;
+
+    setLoading(true);
+    setError("");
+    try {
+      const isAlreadyInFavorites = favorites.includes(eventId);
+
+      if (isAlreadyInFavorites) {
+        alert("Event already added to favorites.");
+      } else {
+        const response = await axios.post("http://localhost:5001/add-favorite", {
+          user_id: userId,
+          event_id: eventId,
+        });
+        if (response.data.success) {
+          setFavorites((prevFavorites) => [...prevFavorites, eventId]);
+          alert("Event added to favorites.");
+        }
+      }
+    } catch (err) {
+      setError("Failed to update favorites.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleWishlistNavigation = () => {
+    navigate("/wishlist");
+  };
+
+  const handleNotificationsNavigation = () => {
+    navigate("/notifications");
+  };
+
+  const handleViewBookedTickets = () => {
+    navigate("/view-booked-tickets");
+  };
 
   useEffect(() => {
     handleSearch();
-    fetchMyEvents(); // Fetch user events when the component loads
+    fetchMyEvents();
   }, []);
 
   return (
@@ -181,6 +228,7 @@ const Attendee = () => {
             <th>Price</th>
             <th>Tickets Available</th>
             <th>Action</th>
+            <th>Favorites</th>
           </tr>
         </thead>
         <tbody>
@@ -198,11 +246,21 @@ const Attendee = () => {
                     Book Now
                   </button>
                 </td>
+                <td>
+                  <button
+                    onClick={() => handleAddToFavorites(event.event_id)}
+                    style={{
+                      color: favorites.includes(event.event_id) ? "red" : "gray",
+                    }}
+                  >
+                    Add to Favorites
+                  </button>
+                </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="7">No events found</td>
+              <td colSpan="8">No events found</td>
             </tr>
           )}
         </tbody>
@@ -243,6 +301,19 @@ const Attendee = () => {
           )}
         </tbody>
       </table>
+
+      <div>
+        <FaHeart
+          onClick={handleWishlistNavigation}
+          size={30}
+          style={{ cursor: "pointer", color: "red" }}
+        />
+      </div>
+
+      <div>
+        <button onClick={handleNotificationsNavigation}>View Notifications</button>
+        <button onClick={handleViewBookedTickets}>View Booked Tickets</button>
+      </div>
     </div>
   );
 };

@@ -11,6 +11,8 @@ const edit_eventRoutes = require("./routes/edit_event");
 const searchRoutes = require("./routes/search");
 const { bookTicket } = require("./controllers/book");
 const event_controlRoutes=require("./routes/eventController");
+const wishlistROutes=require('./routes/wishlist');
+const book_updateRoute=require("./routes/booked_data");
 
 const app = express();
 
@@ -45,6 +47,11 @@ app.use("/search", searchRoutes);
 app.use("/my-events",event_controlRoutes);
 app.post("/book", bookTicket(broadcast));
 app.use("/cancel-booking",event_controlRoutes);
+app.use('/add-favorite',wishlistROutes);
+app.use('/remove-favorite',wishlistROutes);
+app.use('/wishlist',wishlistROutes);
+app.use('/booked-tickets',book_updateRoute);
+
 const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
