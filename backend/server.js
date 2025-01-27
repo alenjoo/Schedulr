@@ -13,7 +13,8 @@ const { bookTicket } = require("./controllers/book");
 const event_controlRoutes=require("./routes/eventController");
 const wishlistROutes=require('./routes/wishlist');
 const book_updateRoute=require("./routes/booked_data");
-
+const paymentRoutes = require("./routes/payment"); 
+const ticketControllerRoutes=require("./routes/ticketController");
 const app = express();
 
 const wss = new WebSocketServer({ port: 8080 }); 
@@ -36,6 +37,7 @@ const broadcast = (message) => {
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ extended: false }));
 
 app.use("/register", registerRoutes);
 app.use("/login", loginRoutes);
@@ -51,6 +53,10 @@ app.use('/add-favorite',wishlistROutes);
 app.use('/remove-favorite',wishlistROutes);
 app.use('/wishlist',wishlistROutes);
 app.use('/booked-tickets',book_updateRoute);
+app.use("/payment", paymentRoutes); 
+app.use("/get-user",loginRoutes);
+app.use("/ticket-sales",ticketControllerRoutes);
+app.use("/revenue",ticketControllerRoutes);
 
 const PORT = 5001;
 app.listen(PORT, () => {

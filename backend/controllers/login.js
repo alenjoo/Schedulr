@@ -1,6 +1,5 @@
 const db = require('../config/db');
 const jwt = require('jsonwebtoken'); 
-
 const JWT_SECRET = 'your_jwt_secret_key';
 
 const loginUser = async (req, res) => {
@@ -38,5 +37,37 @@ const loginUser = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Server error' });
     }
 };
+const getUser = async (req, res) => {
+    const { userId } = req.params; // Extract userId from URL parameters
 
-module.exports = { loginUser };
+    const query = 'SELECT * FROM Users WHERE id = ?';
+
+    try {
+        const [results] = await db.query(query, [userId]);
+
+        if (results.length > 0) {
+            const userDetails = results[0]; // Extract the user details
+
+            // Send the user details to the frontend
+            return res.status(200).json({
+                success: true,
+                message: 'User retrieved successfully',
+                userDetails,
+            });
+        } else {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found',
+            });
+        }
+    } catch (err) {
+        console.error('Error querying database:', err.message);
+        return res.status(500).json({
+            success: false,
+            message: 'Server error',
+        });
+    }
+};
+
+
+module.exports = { loginUser, getUser };

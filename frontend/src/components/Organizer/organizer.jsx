@@ -13,6 +13,10 @@ function Organizer() {
     navigate('/check-event-status');
   };
 
+  const handleAnalysis = () => {
+    navigate('/analysis');
+  };
+
   return (
     <div className="organizer-container">
       <h2 className="organizer-title">Organizer Dashboard</h2>
@@ -23,6 +27,9 @@ function Organizer() {
         </button>
         <button className="organizer-button" onClick={handleCheckEventStatus}>
           Check Event Status
+        </button>
+        <button className="organizer-button" onClick={handleAnalysis}>
+          Analysis
         </button>
       </div>
     </div>

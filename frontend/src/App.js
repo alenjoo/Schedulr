@@ -12,6 +12,7 @@ import BookTicket from './components/Attendee/book_ticket';
 import Notifications from './components/Attendee/notifications';
 import ViewBookedTickets from './components/Attendee/tickets';
 import Wishlist from './components/Attendee/wishlist';
+import Analysis from './components/Organizer/analysis';
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/view-booked-tickets" element={<ViewBookedTickets />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/analysis" element={<Analysis />} />
+
 
         
 
