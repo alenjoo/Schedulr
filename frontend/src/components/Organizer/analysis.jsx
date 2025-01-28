@@ -1,48 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './analysis.css';
+import { jwtDecode } from 'jwt-decode';
 
 function Analysis() {
   const [ticketSales, setTicketSales] = useState([]);
   const [revenue, setRevenue] = useState([]);
   const [attendeeDemographics, setAttendeeDemographics] = useState([]);
 
-  // Fetching ticket sales data
   useEffect(() => {
     const fetchTicketSales = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/ticket-sales');
+        const token = localStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        const organizerId = decodedToken.id;
+
+        const response = await axios.get('http://localhost:5001/ticket-sales', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            organizerId,
+          },
+        });
+
         setTicketSales(response.data);
       } catch (error) {
         console.error('Error fetching ticket sales:', error);
       }
     };
 
-    // Fetching revenue data
     const fetchRevenue = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/revenue/hi');
-        
+        const token = localStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+
+        const response = await axios.get(`http://localhost:5001/revenue/rev`, {
+          params: { userId },
+        });
+
         setRevenue(response.data);
-        console.log(revenue)
       } catch (error) {
         console.error('Error fetching revenue:', error);
       }
     };
 
+    const fetchDemographics = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+
+        const response = await axios.get('http://localhost:5001/demographics/dem', {
+          params: { userId },
+        });
+        setAttendeeDemographics(response.data);
+      } catch (error) {
+        console.error('Error fetching attendee demographics:', error);
+      }
+    };
+
     fetchTicketSales();
     fetchRevenue();
+    fetchDemographics();
   }, []);
 
   return (
     <div className="analysis-container">
-      <h2>Event Analysis</h2>
+      <h2 className="analysis-title">Event Analysis</h2>
 
-      {/* Ticket Sales Section */}
       <div className="analysis-sections">
-        <div className="section">
-          <h3>Ticket Sales by Time of Day</h3>
-          <table>
+        <div className="analysis-section">
+          <h3 className="analysis-section-title">Ticket Sales by Time of Day</h3>
+          <table className="analysis-table">
             <thead>
               <tr>
                 <th>Time of Day</th>
@@ -59,17 +90,18 @@ function Analysis() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="2">No data available</td>
+                  <td colSpan="2" className="analysis-empty">
+                    No data available
+                  </td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
 
-        {/* Revenue Generation Section */}
-        <div className="section">
-          <h3>Revenue Generation</h3>
-          <table>
+        <div className="analysis-section">
+          <h3 className="analysis-section-title">Revenue Generation</h3>
+          <table className="analysis-table">
             <thead>
               <tr>
                 <th>Event Name</th>
@@ -86,18 +118,19 @@ function Analysis() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="2">No revenue data available</td>
+                  <td colSpan="2" className="analysis-empty">
+                    No revenue data available
+                  </td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
 
-        {/* Attendee Demographics Section */}
-        <div className="section">
-          <h3>Attendee Demographics</h3>
+        <div className="analysis-section">
+          <h3 className="analysis-section-title">Attendee Demographics</h3>
           {attendeeDemographics.length > 0 ? (
-            <table>
+            <table className="analysis-table">
               <thead>
                 <tr>
                   <th>Age Group</th>
@@ -114,7 +147,7 @@ function Analysis() {
               </tbody>
             </table>
           ) : (
-            <p>No demographic data available</p>
+            <p className="analysis-empty-message">No demographic data available</p>
           )}
         </div>
       </div>

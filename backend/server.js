@@ -57,7 +57,8 @@ app.use("/payment", paymentRoutes);
 app.use("/get-user",loginRoutes);
 app.use("/ticket-sales",ticketControllerRoutes);
 app.use("/revenue",ticketControllerRoutes);
-
+app.use("/demographics",ticketControllerRoutes);
+app.use("/edit",edit_eventRoutes);
 const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

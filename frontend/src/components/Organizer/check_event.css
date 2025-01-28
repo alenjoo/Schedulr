@@ -1,60 +1,95 @@
-.check_event-container {
-  width: 100%;
+.check-event-container {
+  width: 90%;
+  margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.check_event-table {
+.check-event-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+.check-event-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.check_event-table th,
-.check_event-table td {
-  padding: 10px;
+.check-event-table th,
+.check-event-table td {
+  padding: 15px;
   text-align: left;
   border: 1px solid #ddd;
 }
 
-.check_event-table th {
+.check-event-table th {
   background-color: #007BFF;
   color: white;
-}
-
-.check_event-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.check_event-table tr:hover {
-  background-color: #e0e0e0;
-}
-
-.check_event-edit-btn,
-.check_event-delete-btn {
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-  margin-right: 5px;
-  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
   font-size: 14px;
 }
 
-.check_event-edit-btn {
+.check-event-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.check-event-table tr:hover {
+  background-color: #e9ecef;
+}
+
+.check-event-table td {
+  font-size: 14px;
+  color: #495057;
+}
+
+.check-event-button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.check-event-button {
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+.check-event-edit-button {
   background-color: #28a745;
   color: white;
 }
 
-.check_event-edit-btn:hover {
+.check-event-edit-button:hover {
   background-color: #218838;
 }
 
-.check_event-delete-btn {
+.check-event-delete-button {
   background-color: #dc3545;
   color: white;
 }
 
-.check_event-delete-btn:hover {
+.check-event-delete-button:hover {
   background-color: #c82333;
+}
+
+.check-event-no-events {
+  text-align: center;
+  color: #6c757d;
+  font-size: 1.2rem;
+  margin-top: 20px;
 }

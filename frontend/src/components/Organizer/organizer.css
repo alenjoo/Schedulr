@@ -1,37 +1,53 @@
 .organizer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f4f4f9;
-  }
-  
-  .organizer-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
-  
-  .organizer-options {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .organizer-button {
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 200px;
-  }
-  
-  .organizer-button:hover {
-    background-color: #45a049;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #2596be, #2596be);
+  font-family: 'Arial', sans-serif;
+}
+
+.organizer-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  padding: 20px;
+  text-align: center;
+}
+
+.organizer-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.organizer-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.organizer-button {
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.organizer-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.organizer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

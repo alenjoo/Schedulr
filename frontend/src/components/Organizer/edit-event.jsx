@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import './edit-event.css';
 
 const EditEvent = () => {
   const { event_id } = useParams();  
@@ -61,15 +62,15 @@ const EditEvent = () => {
     setEvent((prevEvent) => ({ ...prevEvent, [name]: value }));
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <div className="edit-event-loading">Loading...</div>;
+  if (error) return <div className="edit-event-error">{error}</div>;
 
   return (
-    <div>
-      <h1>Edit Event</h1>
-      {successMessage && <div style={{ color: "green" }}>{successMessage}</div>}
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="edit-event-container">
+      <h1 className="edit-event-header">Edit Event</h1>
+      {successMessage && <div className="edit-event-success">{successMessage}</div>}
+      <form className="edit-event-form" onSubmit={handleSubmit}>
+        <div className="edit-event-form-group">
           <label>Title:</label>
           <input
             type="text"
@@ -79,7 +80,7 @@ const EditEvent = () => {
             required
           />
         </div>
-        <div>
+        <div className="edit-event-form-group">
           <label>Description:</label>
           <input
             type="text"
@@ -88,7 +89,7 @@ const EditEvent = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="edit-event-form-group">
           <label>Location:</label>
           <input
             type="text"
@@ -97,7 +98,7 @@ const EditEvent = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="edit-event-form-group">
           <label>Date:</label>
           <input
             type="date"
@@ -107,7 +108,7 @@ const EditEvent = () => {
             required
           />
         </div>
-        <div>
+        <div className="edit-event-form-group">
           <label>Time:</label>
           <input
             type="time"
@@ -117,20 +118,20 @@ const EditEvent = () => {
             required
           />
         </div>
-        <div>
+        <div className="edit-event-form-group">
           <label>Category:</label>
           <select
             name="category"
             value={event.category || ""}
             onChange={handleChange}
           >
-            <option value="conference">Conference</option>
-            <option value="workshop">Workshop</option>
-            <option value="meetup">Meetup</option>
-            <option value="social">Social</option>
+            <option value="Conference">Conference</option>
+            <option value="Workshop">Workshop</option>
+            <option value="Meetup">Meetup</option>
+            <option value="Social">Social</option>
           </select>
         </div>
-        <div>
+        <div className="edit-event-form-group">
           <label>Price:</label>
           <input
             type="number"
@@ -139,11 +140,11 @@ const EditEvent = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Save Changes</button>
+        <button className="edit-event-submit" type="submit">Save Changes</button>
       </form>
 
-      <h2>Event Details</h2>
-      <table>
+      <h2 className="edit-event-details-header">Event Details</h2>
+      <table className="edit-event-details">
         <tbody>
           <tr>
             <td><strong>Event Title:</strong> {event.title}</td>

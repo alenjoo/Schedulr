@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import './add_event.css';
+import { useNavigate } from 'react-router-dom';
 
 const AddEvent = () => {
   const [eventDetails, setEventDetails] = useState({
@@ -14,7 +15,7 @@ const AddEvent = () => {
     price: '',
     ticketsAvailable: '' 
   });
-
+  const navigate=useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEventDetails(prev => ({
@@ -76,7 +77,7 @@ const AddEvent = () => {
         price: '',
         ticketsAvailable: '' 
       });
-
+      navigate("/organizer")
     } catch (error) {
       console.error('Error creating event:', error.response ? error.response.data : error.message);
     }

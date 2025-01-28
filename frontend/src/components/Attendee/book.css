@@ -1,0 +1,131 @@
+/* General Page Styles */
+.book-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header Styles */
+  .book-header {
+    text-align: center;
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .book-subheader {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Event Details Section */
+  .book-event-details {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .book-event-details p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .book-event-details strong {
+    color: #2c3e50;
+  }
+  
+  /* Ticket Count Input */
+  .book-ticket-count-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .book-ticket-count-section label {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .book-ticket-count-section input {
+    width: 100px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  
+  .book-ticket-count-section input:focus {
+    border-color: #3498db;
+  }
+  
+  /* Total Price Section */
+  .book-total-price {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin: 20px 0;
+  }
+  
+  /* Booking Button */
+  .book-button {
+    background-color: #3498db;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  
+  .book-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+  }
+  
+  .book-button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  /* Loading & Error Messages */
+  .book-loading, .book-error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #e74c3c;
+    margin-top: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .book-ticket-count-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .book-ticket-count-section label {
+      margin-bottom: 10px;
+    }
+  
+    .book-ticket-count-section input {
+      width: 80%;
+    }
+  
+    .book-total-price {
+      font-size: 1.2rem;
+    }
+  
+    .book-button {
+      width: 100%;
+    }
+  }
+  

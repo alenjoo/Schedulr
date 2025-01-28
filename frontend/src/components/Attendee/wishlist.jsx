@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import{ jwtDecode} from "jwt-decode"; // Fix import syntax
+import { jwtDecode } from "jwt-decode"; // Fix import syntax
 import { useNavigate } from "react-router-dom";
+import { FaHome, FaTicketAlt, FaStar } from "react-icons/fa"; // Icons for sidebar
+import './tickets.css'; // Make sure to import the CSS for proper styling
 
 const Wishlist = () => {
   const [wishlistEvents, setWishlistEvents] = useState([]);
@@ -87,46 +89,71 @@ const Wishlist = () => {
   }, []);
 
   return (
-    <div>
-      <h1>My Wishlist</h1>
+    <div className="attendee-container">
+      {/* Static Sidebar */}
+      <div className="attendee-sidebar">
+        <div className="sidebar-menu">
+          <ul>
+            <li onClick={() => navigate("/attendee")}>
+              <FaHome className="mr-2" /> Home
+            </li>
+            <li onClick={() => navigate("/view-booked-tickets")}>
+              <FaTicketAlt className="mr-2" /> Booked Tickets
+            </li>
+            <li onClick={() => navigate("/wishlist")}>
+              <FaStar className="mr-2" /> Wishlist
+            </li>
+          </ul>
+        </div>
+      </div>
 
-      {loading && <div>Loading...</div>}
-      {error && <div style={{ color: "red" }}>{error}</div>}
+      {/* Main Content */}
+      <div className="attendee-content">
+        <div className="content-box">
+          <h1 className="attendee-header">My Wishlist</h1>
 
-      {wishlistEvents.length > 0 ? (
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Location</th>
-              <th>Date</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Tickets Available</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {wishlistEvents.map((event) => (
-              <tr key={event.event_id}>
-                <td>{event.title}</td>
-                <td>{event.location}</td>
-                <td>{new Date(event.date).toLocaleDateString()}</td>
-                <td>{event.category}</td>
-                <td>{event.price}</td>
-                <td>{event.ticketsavailable}</td>
-                <td>
-                  <button onClick={() => removeFromFavorites(event.event_id)}>
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <div>No events in your wishlist.</div>
-      )}
+          {loading && <div className="attendee-loading">Loading...</div>}
+          {error && <div className="attendee-error">{error}</div>}
+
+          {wishlistEvents.length > 0 ? (
+            <div className="attendee-table-container">
+              <table className="attendee-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Tickets Available</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {wishlistEvents.map((event) => (
+                    <tr key={event.event_id}>
+                      <td>{event.title}</td>
+                      <td>{event.location}</td>
+                      <td>{new Date(event.date).toLocaleDateString()}</td>
+                      <td>{event.category}</td>
+                      <td>{event.price}</td>
+                      <td>{event.ticketsavailable}</td>
+                      <td>
+                      <button className="wish-remove-button" onClick={() => removeFromFavorites(event.event_id)}>
+  Remove
+</button>
+
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="text-center">No events in your wishlist.</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,10 @@
 const db = require('../config/db');
 
 const registerUser = async (req, res) => {
-  const { name, email, password, role, phone_number } = req.body;
+  const { name, email, password, role, phone_number, dob, gender, location } = req.body;
 
-  if (!name || !email || !password || !role || !phone_number) {
+  // Check if all required fields are provided
+  if (!name || !email || !password || !role || !phone_number || !dob || !gender || !location) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
@@ -18,9 +19,12 @@ const registerUser = async (req, res) => {
     return res.status(500).json({ message: 'Server error. Please try again.' });
   }
 
-  const insertUserQuery = 'INSERT INTO Users (name, email, password, role, phone_number) VALUES (?, ?, ?, ?, ?)';
+  const insertUserQuery = `
+    INSERT INTO Users (name, email, password, role, phone_number, dob, gender, location) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `;
   try {
-    await db.query(insertUserQuery, [name, email, password, role, phone_number]);
+    await db.query(insertUserQuery, [name, email, password, role, phone_number, dob, gender, location]);
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
     console.error('Error during user registration:', error);

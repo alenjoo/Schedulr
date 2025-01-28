@@ -1,0 +1,90 @@
+
+  .edit-event-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-event-header {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .edit-event-success {
+    color: #28a745;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .edit-event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .edit-event-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .edit-event-form input,
+  .edit-event-form select,
+  .edit-event-form button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .edit-event-form input:focus,
+  .edit-event-form select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .edit-event-form button {
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-event-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .edit-event-details {
+    margin-top: 30px;
+  }
+  
+  .edit-event-details table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .edit-event-details td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .edit-event-details tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .edit-event-details tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .edit-event-details strong {
+    color: #555;
+  }
+  

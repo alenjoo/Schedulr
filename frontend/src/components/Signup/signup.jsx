@@ -11,6 +11,9 @@ const Signup = () => {
     confirmPassword: '',
     role: '',
     phone_number: '',
+    dob: '',
+    gender: '',
+    location: '',
   });
 
   const navigate = useNavigate();
@@ -29,8 +32,6 @@ const Signup = () => {
     try {
       const response = await axios.post('http://localhost:5001/register', formData);
       alert(response.data.message);
-      
-     
       navigate('/login');
     } catch (error) {
       console.error(error);
@@ -74,6 +75,47 @@ const Signup = () => {
             name="phone_number"
             className="signup-input"
             value={formData.phone_number}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="signup-input-group">
+          <label htmlFor="dob" className="signup-label">Date of Birth</label>
+          <input
+            type="date"
+            id="dob"
+            name="dob"
+            className="signup-input"
+            value={formData.dob}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="signup-input-group">
+          <label htmlFor="gender" className="signup-label">Gender</label>
+          <select
+            id="gender"
+            name="gender"
+            className="signup-input"
+            value={formData.gender}
+            onChange={handleChange}
+            required
+          >
+            <option value="" disabled>Select your gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+          </select>
+        </div>
+        <div className="signup-input-group">
+          <label htmlFor="location" className="signup-label">Location</label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            className="signup-input"
+            value={formData.location}
             onChange={handleChange}
             required
           />

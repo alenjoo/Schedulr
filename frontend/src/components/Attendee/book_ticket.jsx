@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import './book.css';
 
 const BookTicket = () => {
   const { eventId } = useParams();
@@ -177,8 +178,8 @@ const BookTicket = () => {
     paymentObject.open();
   }
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <div className="book-loading">Loading...</div>;
+  if (error) return <div className="book-error">{error}</div>;
 
   if (!eventDetails && !loading && !error) {
     navigate("/events");
@@ -186,18 +187,18 @@ const BookTicket = () => {
   }
 
   return (
-    <div>
-      <h1>Book Ticket</h1>
+    <div className="book-container">
+      <h1 className="book-header">Book Ticket</h1>
       {eventDetails ? (
-        <div>
-          <h2>{eventDetails.title}</h2>
+        <div className="book-event-details">
+          <h2 className="book-subheader">{eventDetails.title}</h2>
           <p><strong>Location:</strong> {eventDetails.location}</p>
           <p><strong>Date:</strong> {new Date(eventDetails.date).toLocaleDateString()}</p>
           <p><strong>Category:</strong> {eventDetails.category}</p>
           <p><strong>Price per Ticket:</strong> ₹{eventDetails.price}</p>
           <p><strong>Tickets Available:</strong> {eventDetails.ticketsavailable}</p>
 
-          <div>
+          <div className="book-ticket-count-section">
             <label htmlFor="ticketCount">Number of Tickets:</label>
             <input
               type="number"
@@ -209,9 +210,9 @@ const BookTicket = () => {
             />
           </div>
 
-          <p><strong>Total Price:</strong> ₹{totalPrice}</p>
+          <p className="book-total-price"><strong>Total Price:</strong> ₹{totalPrice}</p>
 
-          <button onClick={handleBooking} disabled={loading}>
+          <button className="book-button" onClick={handleBooking} disabled={loading}>
             {loading ? "Booking..." : "Book Now"}
           </button>
         </div>
