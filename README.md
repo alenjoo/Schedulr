@@ -1,6 +1,6 @@
 # Schedulr - Event Management System
 
-Schedulr is a comprehensive event management system designed to streamline the process of organizing and managing events. The application provides a user-friendly interface for creating, updating, searching, and managing events with multiple levels of functionality. Built with React for the frontend and Express.js for the backend, this system allows users to access event details, filter and search for events, and interact with a flexible layout.
+Schedulr is a comprehensive event management system designed to streamline the process of organizing and managing events. The application provides a user-friendly interface for creating, updating, searching, and managing events. Built with React for the frontend and Node.js for the backend, this system allows users to access event details, filter and search for events, and interact with a flexible layout.
 
 ## Features
 
