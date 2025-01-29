@@ -1,0 +1,26 @@
+# Build files
+dist/
+build/
+out/
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+coverage/
+.nyc_output/
+.eslintcache
+
+# TypeScript
+*.tsbuildinfo

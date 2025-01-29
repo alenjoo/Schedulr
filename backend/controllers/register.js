@@ -3,7 +3,6 @@ const db = require('../config/db');
 const registerUser = async (req, res) => {
   const { name, email, password, role, phone_number, dob, gender, location } = req.body;
 
-  // Check if all required fields are provided
   if (!name || !email || !password || !role || !phone_number || !dob || !gender || !location) {
     return res.status(400).json({ message: 'All fields are required' });
   }

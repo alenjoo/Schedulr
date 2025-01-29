@@ -5,14 +5,14 @@ const crypto = require("crypto");
 const pool = require("../config/db");
 const util = require("util");
 const queryAsync = util.promisify(pool.query).bind(pool);
-
+require('dotenv').config()
 const router = express.Router();
 
 router.post("/orders/:totalprice", async (req, res) => {
   try {
     const instance = new Razorpay({
-      key_id: "rzp_test_NsB3oPpNOVdgRa",
-      key_secret: "YhEt0gUNrTySBNyvwhKR1sKt",
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.RAZORPAY_KEY_SECRET,
     });
 
     const { totalprice } = req.params;
@@ -47,8 +47,7 @@ router.post("/success", async (req, res) => {
         num_tickets, // Number of tickets booked
       } = req.body;
   
-      // Verify the payment signature
-      const shasum = crypto.createHmac("sha256", "YhEt0gUNrTySBNyvwhKR1sKt");
+      const shasum = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET);
       shasum.update(`${orderCreationId}|${razorpayPaymentId}`);
   
       const digest = shasum.digest("hex");
