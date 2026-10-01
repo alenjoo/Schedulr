@@ -87,3 +87,11 @@ Ensure you have a MySQL database set up. Configure the database connection in `b
 [Schedulr GitHub Repository](https://github.com/alenjoo/schedulr)
 
 
+
+# Connector Sync Test
+
+This repo proves GitHub sync is working.
+
+Unique marker: flypanda-github-sync-2026-10-01
+
+
